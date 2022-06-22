@@ -106,6 +106,123 @@ public class Main {
                 playerWins, botWins, draws, totalGames, winPercentage);
     }
 
+    private static void complicatedMode() {
+        Actions[] actions = Actions.values();
+        while (true) {
+            System.out.print("| ");
+            for (Actions a : actions) {
+                System.out.print(a + " | ");
+            }
+            System.out.println();
+
+            System.out.print("Select the sign you want to select by its number (1 - 5): ");
+            int playerChoice = getNumber() - 1;
+
+            while (playerChoice < 0 || playerChoice > 4) {
+                System.out.print("Invalid value. Enter from 1 to 3: ");
+                playerChoice = getNumber() - 1;
+            }
+
+            Actions player = actions[playerChoice];
+            Actions playerBot = actions[playerBot()];
+
+            totalGames++;
+
+            if (player == Actions.ROCK) {
+                if (playerBot == Actions.PAPER) {
+                    printActions(player, playerBot);
+                    System.out.println("You lose!");
+                    botWins++;
+                } else if (playerBot == Actions.SCISSORS || playerBot == Actions.LIZARD) {
+                    printActions(player, playerBot);
+                    System.out.println("You win!");
+                    playerWins++;
+                } else {
+                    printActions(player, playerBot);
+                    System.out.println("Draw");
+                    draws++;
+                }
+            } else if (player == Actions.PAPER) {
+                if (playerBot == Actions.PAPER) {
+                    printActions(player, playerBot);
+                    System.out.println("Draw");
+                    draws++;
+                } else if (playerBot == Actions.SCISSORS) {
+                    printActions(player, playerBot);
+                    System.out.println("You lose!");
+                    botWins++;
+                } else {
+                    printActions(player, playerBot);
+                    System.out.println("You win!");
+                    playerWins++;
+                }
+            } else if (player == Actions.SCISSORS) {
+                if (playerBot == Actions.PAPER || playerBot == Actions.LIZARD) {
+                    printActions(player, playerBot);
+                    System.out.println("You win!");
+                    playerWins++;
+                } else if (playerBot == Actions.SCISSORS) {
+                    printActions(player, playerBot);
+                    System.out.println("Draw");
+                    draws++;
+                } else {
+                    printActions(player, playerBot);
+                    System.out.println("You lose!");
+                    botWins++;
+                }
+            } else if (player == Actions.LIZARD) {
+                if (playerBot == Actions.SPOCK || playerBot == Actions.PAPER) {
+                    printActions(player, playerBot);
+                    System.out.println("You win!");
+                    playerWins++;
+                } else if (playerBot == Actions.ROCK || playerBot == Actions.SCISSORS) {
+                    printActions(player, playerBot);
+                    System.out.println("You lose!");
+                    botWins++;
+                } else {
+                    printActions(player, playerBot);
+                    System.out.println("Draw");
+                    draws++;
+                }
+            } else {
+                if (playerBot == Actions.SCISSORS || playerBot == Actions.ROCK) {
+                    printActions(player, playerBot);
+                    System.out.println("You win!");
+                    playerWins++;
+                } else if (playerBot == Actions.PAPER || playerBot == Actions.LIZARD) {
+                    printActions(player, playerBot);
+                    System.out.println("You lose!");
+                    botWins++;
+                } else {
+                    printActions(player, playerBot);
+                    System.out.println("Draw");
+                    draws++;
+                }
+            }
+
+            System.out.print("Do you want to complete the game? (y/n): ");
+            String endGame = getString(new Scanner(System.in)).toLowerCase();
+
+            while (!endGame.equals("y") && !endGame.equals("n")) {
+                System.out.print("Please enter 'y' or 'n': ");
+                endGame = getString(new Scanner(System.in)).toLowerCase();
+            }
+            System.out.println();
+
+            if (endGame.equals("y")) {
+                break;
+            }
+        }
+        double winPercentage = (double) playerWins / totalGames * 100;
+        System.out.printf("""
+                        +-----------------------------------------------------------+
+                        |  WINS  |  LOSES  |  DRAWS  | TOTAL GAMES | WIN PERCENTAGE |
+                        |--------+---------+---------+-------------+----------------|
+                        |  %4d  |  %5d  |  %5d  | %11d | %14.2f |
+                        +-----------------------------------------------------------+""",
+                playerWins, botWins, draws, totalGames, winPercentage);
+    }
+
     private static int getNumber() {
         int value;
         while (true) {
