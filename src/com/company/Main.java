@@ -24,6 +24,7 @@ public class Main {
             System.out.print("Invalid value! Please enter 1 or 2: ");
             gameMode = getNumber();
         }
+        System.out.println();
 
         if (gameMode == 1) {
             simpleMode();
@@ -33,7 +34,10 @@ public class Main {
     }
 
     private static void simpleMode() {
-        Actions[] actions = Actions.values();
+        Actions[] actions = new Actions[3];
+        actions[0] = Actions.ROCK;
+        actions[1] = Actions.PAPER;
+        actions[2] = Actions.SCISSORS;
         while (true) {
             System.out.print("| ");
             for (Actions a : actions) {
@@ -144,7 +148,7 @@ public class Main {
             totalGames++;
 
             if (player == Actions.ROCK) {
-                if (playerBot == Actions.PAPER) {
+                if (playerBot == Actions.PAPER || playerBot == Actions.SPOCK) {
                     printActions(player, playerBot);
                     System.out.println("You lose!");
                     botWins++;
@@ -162,7 +166,7 @@ public class Main {
                     printActions(player, playerBot);
                     System.out.println("Draw");
                     draws++;
-                } else if (playerBot == Actions.SCISSORS) {
+                } else if (playerBot == Actions.SCISSORS || playerBot == Actions.LIZARD) {
                     printActions(player, playerBot);
                     System.out.println("You lose!");
                     botWins++;
