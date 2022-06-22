@@ -91,6 +91,15 @@ public class Main {
                 break;
             }
         }
+
+        double winPercentage = (double) playerWins / totalGames * 100;
+        System.out.printf("""
+                        +-----------------------------------------------------------+
+                        |  WINS  |  LOSES  |  DRAWS  | TOTAL GAMES | WIN PERCENTAGE |
+                        |--------+---------+---------+-------------+----------------|
+                        |  %4d  |  %5d  |  %5d  | %11d | %14.2f |
+                        +-----------------------------------------------------------+""",
+                playerWins, botWins, draws, totalGames, winPercentage);
     }
 
     private static int getNumber() {
