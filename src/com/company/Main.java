@@ -14,7 +14,23 @@ public class Main {
     }
 
     private static void run() {
+        System.out.print("""
+                Select the game mode
+                    Simple - 1
+                    Complicated - 2:\040""");
 
+        int gameMode = getNumber();
+
+        while (gameMode < 1 || gameMode > 2) {
+            System.out.print("Invalid value! Please enter 1 or 2: ");
+            gameMode = getNumber();
+        }
+
+        if (gameMode == 1) {
+            simpleMode();
+        } else {
+            complicatedMode();
+        }
     }
 
     private static void simpleMode() {
