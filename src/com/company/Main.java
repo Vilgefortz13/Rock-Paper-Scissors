@@ -11,10 +11,13 @@ public class Main {
 
     private static void run() {
         Actions[] actions = Actions.values();
-
+        System.out.print("| ");
+        for (Actions a : actions) {
+            System.out.print(a + " | ");
+        }
+        System.out.println();
 
     }
-
 
 
 }
