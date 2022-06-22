@@ -14,6 +14,10 @@ public class Main {
     }
 
     private static void run() {
+
+    }
+
+    private static void simpleMode() {
         Actions[] actions = Actions.values();
         while (true) {
             System.out.print("| ");
