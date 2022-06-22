@@ -32,6 +32,50 @@ public class Main {
         Actions playerBot = actions[playerBot()];
 
         totalGames++;
+
+        if (player == Actions.ROCK) {
+            if (playerBot == Actions.PAPER) {
+                printActions(player, playerBot);
+                System.out.println("You lose!");
+                botWins++;
+            } else if (playerBot == Actions.SCISSORS) {
+                printActions(player, playerBot);
+                System.out.println("You win!");
+                playerWins++;
+            } else {
+                printActions(player, playerBot);
+                System.out.println("Draw");
+                draws++;
+            }
+        } else if (player == Actions.PAPER) {
+            if (playerBot == Actions.PAPER) {
+                printActions(player, playerBot);
+                System.out.println("Draw");
+                draws++;
+            } else if (playerBot == Actions.SCISSORS) {
+                printActions(player, playerBot);
+                System.out.println("You lose!");
+                botWins++;
+            } else {
+                printActions(player, playerBot);
+                System.out.println("You win!");
+                playerWins++;
+            }
+        } else {
+            if (playerBot == Actions.PAPER) {
+                printActions(player, playerBot);
+                System.out.println("You win!");
+                playerWins++;
+            } else if (playerBot == Actions.SCISSORS) {
+                printActions(player, playerBot);
+                System.out.println("Draw");
+                draws++;
+            } else {
+                printActions(player, playerBot);
+                System.out.println("You lose!");
+                botWins++;
+            }
+        }
     }
 
     private static int getNumber() {
@@ -48,5 +92,10 @@ public class Main {
 
     private static int playerBot() {
         return new Random().nextInt(0, 3);
+    }
+
+    private static void printActions(Actions player, Actions bot) {
+        System.out.println("Player: " + player);
+        System.out.println("Bot: " + bot);
     }
 }
