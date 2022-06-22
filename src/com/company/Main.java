@@ -30,6 +30,8 @@ public class Main {
 
         Actions player = actions[playerChoice];
         Actions playerBot = actions[playerBot()];
+
+        totalGames++;
     }
 
     private static int getNumber() {
