@@ -2,6 +2,7 @@ package com.company;
 
 
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -26,6 +27,9 @@ public class Main {
             System.out.print("Invalid value. Enter from 1 to 3: ");
             playerChoice = getNumber() - 1;
         }
+
+        Actions player = actions[playerChoice];
+        Actions playerBot = actions[playerBot()];
     }
 
     private static int getNumber() {
@@ -38,5 +42,9 @@ public class Main {
                 System.out.print("Invalid value. Try again: ");
             }
         }
+    }
+
+    private static int playerBot() {
+        return new Random().nextInt(0, 3);
     }
 }
